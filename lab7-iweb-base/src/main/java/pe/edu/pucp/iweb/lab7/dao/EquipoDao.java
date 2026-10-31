@@ -22,7 +22,17 @@ public class EquipoDao extends BaseDao{ // TODO 2a: debe heredar de BaseDao
         try(Connection conn = this.getConnetion();Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT * FROM equipo");){
             while(rs.next()){
                 EquipoRed equipoRed = new EquipoRed;
-                equipoRed.get
+                equipoRed.getIdEquipo(rs.getInt(1));
+                equipoRed.getModelo(rs.getString(2));
+                equipoRed.getTipo(rs.getString(3));
+                equipoRed.getPrecio(rs.getDouble(4));
+                equipoRed.getCantidad(rs.getInt(5));
+                Sede sede = new Sede;
+                sede.getIdSede(rs.getInt(6));
+
+                equipoRed.getSede(sede);
+                lista.add(equipoRed);
+
             }
         }
         return lista;

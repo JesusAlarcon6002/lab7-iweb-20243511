@@ -51,6 +51,19 @@ public class EquipoServlet extends HttpServlet {
         // TODO 3: obtener las sedes (SedeDao) y los equipos (EquipoDao),
         //         enviarlos a la vista como atributos del request,
         //         junto con la sede seleccionada.
+        String action = request.getParameter("action") == null ?
+                "lista" : request.getParameter("action");
+        SedeDao sedeDao = new SedeDao;
+        EquipoDao = equipoDao = new EquipoDao;
+        switch (action) {
+            case "equipos":
+                ArrayList<EquipoRed> listaEquipo = EquipoDao.listarPorSede();
+                ArrayList<Sede> listaSede = SedeDao.listar();
+
+                request.setAttribute("sedes",listaSede);
+                request.setAttribute("equipos", listaEquipo);
+        }
+        RequestDispatcher view;
 
         request.getRequestDispatcher("equipos.jsp").forward(request, response);
     }

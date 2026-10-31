@@ -13,7 +13,12 @@ public class SedeDao extends BaseDao { // TODO 2a: debe heredar de BaseDao
         ArrayList<Sede> lista = new ArrayList<>();
         // TODO 2c
         try(Connection conn = this.getConnetion();Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT * FROM sede");){
-
+            while(rs.netx()){
+                Sede sede = new Sede;
+                sede.getIdSede(rs.getInt(1));
+                sede.getNombre(rs.getString(2));
+                lista.add(sede);
+            }
         }
         return lista;
     }
